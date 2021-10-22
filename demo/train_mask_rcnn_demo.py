@@ -83,6 +83,7 @@ class CustomConfig(Config):
 
     DETECTION_MIN_CONFIDENCE = 0.9
 
+    CAD_KERNEL = True
 
 
 """
