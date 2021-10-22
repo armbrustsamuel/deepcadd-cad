@@ -2142,9 +2142,9 @@ class MaskRCNN():
         """
         from keras.utils.data_utils import get_file
 
-        print("INFO: CAD_KERNEL is" + str(config.CAD_KERNEL))
+        print("INFO: CAD_KERNEL is" + str(self.config.CAD_KERNEL))
         
-        if config.CAD_KERNEL == True:
+        if self.config.CAD_KERNEL == True:
             weights_path = '../cad-weights/model_224_no_top_resnet50_1.h5'
             print("INFO: Using custom CAD weights")
         else:
