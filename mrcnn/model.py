@@ -2142,9 +2142,9 @@ class MaskRCNN():
         """
         from keras.utils.data_utils import get_file
         
-        if config.CAD_KERNEL = True:
+        if config.CAD_KERNEL == True:
             weights_path = '../cad-weights/model_224_no_top_resnet50_1.h5'
-            
+
         else:
             TF_WEIGHTS_PATH_NO_TOP = 'https://github.com/fchollet/deep-learning-models/'\
                                     'releases/download/v0.2/'\
