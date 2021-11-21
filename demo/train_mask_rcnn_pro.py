@@ -394,10 +394,11 @@ def model_evaluation(dataset_val, test_model, inference_config):
         APs.append(AP)
     return APs
 
+
 def model_evaluation_custom(dataset_val, test_model, inference_config):
-    APs = []
-    precision_s = []
-    recall_s = []
+    APs = list(); 
+    ARs = list();
+    F1_scores = list();  
     print("Testing the model on {} validation images.".format(len(dataset_val.image_ids)))
     for image_id in dataset_val.image_ids:
         # Load image and ground truth data
@@ -412,7 +413,10 @@ def model_evaluation_custom(dataset_val, test_model, inference_config):
         AP, precisions, recalls, overlaps = \
             utils.compute_ap(gt_bbox, gt_class_id, gt_mask,
                              r["rois"], r["class_ids"], r["scores"], r['masks'])
+        AR, positive_ids = compute_recall(r["rois"], gt_bbox, iou=0.2)
+        ARs.append(AR)
+        F1_scores.append((2* (mean(precisions) * mean(recalls)))/(mean(precisions) + mean(recalls)))
         APs.append(AP)
-        precision_s.append(precisions)
-        recall_s.append(recalls)
-    return APs, precision_s, recall_s
+    mAP = mean(APs)
+    mAR = mean(ARs)
+    return mAP, mAR, F1_scores
