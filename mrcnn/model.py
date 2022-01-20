@@ -2542,8 +2542,9 @@ class MaskRCNN():
                 "class_ids": final_class_ids,
                 "scores": final_scores,
                 "masks": final_masks,
+                "heatmap": mask_heatmap,
             })
-        return results, mask_heatmap
+        return results
 
     def detect_molded(self, molded_images, image_metas, verbose=0):
         """Runs the detection pipeline, but expect inputs that are
@@ -2600,6 +2601,7 @@ class MaskRCNN():
                 "class_ids": final_class_ids,
                 "scores": final_scores,
                 "masks": final_masks,
+                "heatmap": mask_heatmap,
             })
         return results
 
