@@ -569,8 +569,8 @@ def unmold_mask(mask, bbox, image_shape):
     y1, x1, y2, x2 = bbox
     mask = resize(mask, (y2 - y1, x2 - x1))
     mask_ = np.zeros(image_shape[:2], dtype=np.bool)
-    mask_[y1:y2, x1:x2] = mask
-    
+    mask_[y1:y2, x1:x2] = np.copy(mask)
+
     mask = np.where(mask >= threshold, 1, 0).astype(np.bool)
 
     # Put the mask in the right location.
